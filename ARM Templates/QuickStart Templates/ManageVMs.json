@@ -9,6 +9,20 @@
                 "description": "Name use as base-template to named the resources deployed in Azure."
             }
         },
+        "StorageAccountName": {
+            "defaultValue": "",
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Storage Account that will contain our storage table with history of SMS commands."
+            }
+        },
+        "StorageTableName": {
+            "defaultValue": "",
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Storage Table that will contain our storage table with history of SMS commands."
+            }
+        },
         "TwilioAccountSID": {
             "defaultValue": "",
             "type": "securestring",
@@ -74,6 +88,33 @@
         "repoURL": "https://github.com/bwya77/ManageVMs.git"
     },
     "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2018-02-01",
+            "name": "[parameters('StorageAccountName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "[parameters('StorageAccountName')]"
+            },
+            "sku": {
+                "name": "Standard_LRS"
+            },
+            "kind": "StorageV2",
+            "properties": {},
+            "resources": [
+                {
+                    "type": "tableServices/tables",
+                    "apiVersion": "2018-03-01-preview",
+                    "name": "[concat('default/', parameters('StorageTableName'))]",
+                    "dependsOn": [
+                        "[parameters('StorageAccountName')]"
+                    ],
+                    "properties": {
+                        "publicAccess": "None"
+                    }
+                }
+            ]
+        },
         {
             "apiVersion": "2015-08-01",
             "type": "Microsoft.Web/sites",
