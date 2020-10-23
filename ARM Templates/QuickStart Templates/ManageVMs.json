@@ -10,14 +10,14 @@
             }
         },
         "StorageAccountName": {
-            "defaultValue": "sa-azvmsms",
+            "defaultValue": 'sa-azvmsms',
             "type": "string",
             "metadata": {
                 "description": "Name of the Storage Account that will contain our storage table with history of SMS commands."
             }
         },
         "StorageTableName": {
-            "defaultValue": "st-azvmsms",
+            "defaultValue": 'st-azvmsms',
             "type": "string",
             "metadata": {
                 "description": "Name of the Storage Table that will contain our storage table with history of SMS commands."
