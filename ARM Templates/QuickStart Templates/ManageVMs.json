@@ -177,6 +177,14 @@
                             "value": "[parameters('TwilioNumber')]"
                         },
                         {
+                            "name": "StorageTableName",
+                            "value": "[parameters('StorageTableName')]"
+                        },
+                        {
+                            "name": "StorageAccountName",
+                            "value": "[parameters('StorageAccountName')]"
+                        },
+                        {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
                             "value": "powershell"
                         }
