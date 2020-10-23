@@ -10,70 +10,60 @@
             }
         },
         "StorageAccountName": {
-            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Name of the Storage Account that will contain our storage table with history of SMS commands."
             }
         },
         "StorageTableName": {
-            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Name of the Storage Table that will contain our storage table with history of SMS commands."
             }
         },
         "TwilioAccountSID": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Your Twilio Account SID"
             }
         },
         "TwilioAuthToken": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Your Twilio Account API Auth Token"
             }
         },
+        "TwilioNumber": {
+            "type": "string",
+            "metadata": {
+                "description": "The Twilio Number that will be sending and receiving SMS messages"
+            }
+        },
         "TenantID": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Your Azure Tenant ID"
             }
         },
         "SubscriptionID": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Your Azure Subscription ID"
             }
         },
         "ApplicationID": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Your Azure AD Application (client) ID"
             }
         },
         "ApplicationSecret": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Your Azure AD Application (client) Secret/Password"
             }
         },
-        "TwilioNumber": {
-            "defaultValue": "",
-            "type": "string",
-            "metadata": {
-                "description": "The Twilio Number that will be sending and receiving SMS messages"
-            }
-        },
         "AllowedSender": {
-            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Phone number allowed to SMS the Azure Function. Example: 6185551572"
