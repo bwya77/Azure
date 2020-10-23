@@ -10,7 +10,7 @@
             }
         },
         "StorageAccountName": {
-            "defaultValue": "[toLower(concat(parameters('baseName'), -rg))]",
+            "defaultValue": "sa-[parameters('baseName')]",
             "type": "string",
             "metadata": {
                 "description": "Name of the Storage Account that will contain our storage table with history of SMS commands."
