@@ -4,82 +4,83 @@
     "parameters": {
         "baseName": {
             "defaultValue": "azvmsms",
-            "type": "string",
+            "type": "String",
             "metadata": {
                 "description": "Name use as base-template to named the resources deployed in Azure."
             }
         },
         "StorageAccountName": {
             "defaultValue": "saazvmsms",
-            "type": "string",
+            "type": "String",
             "metadata": {
                 "description": "Name of the Storage Account that will contain our storage table with history of SMS commands."
             }
         },
         "StorageTableName": {
             "defaultValue": "stazvmsms",
-            "type": "string",
+            "type": "String",
             "metadata": {
                 "description": "Name of the Storage Table that will contain our storage table with history of SMS commands."
             }
         },
         "TwilioAccountSID": {
-            "type": "securestring",
+            "type": "SecureString",
             "metadata": {
                 "description": "Your Twilio Account SID"
             }
         },
         "TwilioAuthToken": {
-            "type": "securestring",
+            "type": "SecureString",
             "metadata": {
                 "description": "Your Twilio Account API Auth Token"
             }
         },
         "TwilioNumber": {
-            "type": "string",
+            "type": "String",
             "metadata": {
                 "description": "The Twilio Number that will be sending and receiving SMS messages"
             }
         },
         "TenantID": {
-            "type": "securestring",
+            "type": "SecureString",
             "metadata": {
                 "description": "Your Azure Tenant ID"
             }
         },
         "SubscriptionID": {
-            "type": "securestring",
+            "type": "SecureString",
             "metadata": {
                 "description": "Your Azure Subscription ID"
             }
         },
         "ApplicationID": {
-            "type": "securestring",
+            "type": "SecureString",
             "metadata": {
                 "description": "Your Azure AD Application (client) ID"
             }
         },
         "ApplicationSecret": {
-            "type": "securestring",
+            "type": "SecureString",
             "metadata": {
                 "description": "Your Azure AD Application (client) Secret/Password"
             }
         },
         "AllowedSender": {
-            "type": "string",
+            "type": "String",
             "metadata": {
                 "description": "Phone number allowed to SMS the Azure Function. Example: 6185551572"
             }
         },
         "GitHubBranch": {
-            "type": "string",
             "defaultValue": "main",
+            "type": "String",
             "metadata": {
                 "description": "Which version do you want to deploy. (Default = Main)"
             }
         }
     },
     "variables": {
+        "resourceGroupName": "[resourceGroup().name]",
         "suffix": "[substring(toLower(uniqueString(resourceGroup().id, resourceGroup().location)),0,5)]",
         "funcAppName": "[toLower(concat(parameters('baseName'), variables('suffix')))]",
         "funcStorageName": "[tolower(concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),16)), 'stg', variables('suffix')))]",
@@ -115,15 +116,15 @@
             ]
         },
         {
-            "apiVersion": "2015-08-01",
             "type": "Microsoft.Web/sites",
+            "apiVersion": "2015-08-01",
             "name": "[variables('funcAppName')]",
             "location": "[resourceGroup().location]",
-            "kind": "functionapp",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms',variables('serverFarmName'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('funcStorageName'))]"
             ],
+            "kind": "functionapp",
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverFarmName'))]",
                 "siteConfig": {
@@ -185,6 +186,10 @@
                             "value": "[parameters('StorageAccountName')]"
                         },
                         {
+                            "name": "ResourceGroup",
+                            "value": "[variables('resourceGroupName')]"
+                        },
+                        {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
                             "value": "powershell"
                         }
@@ -193,9 +198,9 @@
             },
             "resources": [
                 {
+                    "type": "sourcecontrols",
                     "apiVersion": "2015-08-01",
                     "name": "web",
-                    "type": "sourcecontrols",
                     "dependsOn": [
                         "[resourceId('Microsoft.Web/sites/', variables('funcAppName'))]"
                     ],
