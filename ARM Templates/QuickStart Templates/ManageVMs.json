@@ -89,7 +89,7 @@
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2018-02-01",
+            "apiVersion": "2018-07-01",
             "name": "[parameters('StorageAccountName')]",
             "location": "[resourceGroup().location]",
             "tags": {
@@ -103,7 +103,7 @@
             "resources": [
                 {
                     "type": "tableServices/tables",
-                    "apiVersion": "2018-03-01-preview",
+                    "apiVersion": "2019-06-01",
                     "name": "[concat('default/', parameters('StorageTableName'))]",
                     "dependsOn": [
                         "[parameters('StorageAccountName')]"
