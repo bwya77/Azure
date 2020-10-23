@@ -173,10 +173,6 @@
                             "value": "[parameters('ApplicationSecret')]"
                         },
                         {
-                            "name": "resourceGroup",
-                            "value": "[parameters('resourceGroup')]"
-                        },
-                        {
                             "name": "TwilioNumber",
                             "value": "[parameters('TwilioNumber')]"
                         },
