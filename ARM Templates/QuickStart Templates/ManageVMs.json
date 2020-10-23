@@ -72,6 +72,13 @@
                 "description": "The Twilio Number that will be sending and receiving SMS messages"
             }
         },
+        "AllowedSender": {
+            "defaultValue": "",
+            "type": "string",
+            "metadata": {
+                "description": "Phone number allowed to SMS the Azure Function. Example: 6185551572"
+            }
+        },
         "GitHubBranch": {
             "type": "string",
             "defaultValue": "main",
