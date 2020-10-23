@@ -65,7 +65,7 @@
                 "description": "Your Azure AD Application (client) Secret/Password"
             }
         },
-        "AllowedSender": {
+        "AllowedSenderPhoneNumber": {
             "type": "string",
             "metadata": {
                 "description": "Phone number allowed to SMS the Azure Function. Example: 6185551572"
