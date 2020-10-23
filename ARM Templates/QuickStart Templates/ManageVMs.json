@@ -186,7 +186,7 @@
                             "value": "[parameters('StorageAccountName')]"
                         },
                         {
-                            "name": "ResourceGroup",
+                            "name": "resourceGroup",
                             "value": "[variables('resourceGroupName')]"
                         },
                         {
